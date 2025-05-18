@@ -1,13 +1,13 @@
 ﻿Console.Clear();
 
-double salarioHora = 0;
+decimal salarioHora = 0;
 int horasTrabalhadas = 0, horasExtras = 0;
 
-static double CalculaSalario(double salarioHora, int horasTrabalhadas, int horasExtras)
+static decimal CalculaSalario(decimal salarioHora, int horasTrabalhadas, int horasExtras)
 {
-    double salarioBase = salarioHora * horasTrabalhadas;
-    double valorHoraExtra =  salarioHora * 1.4;
-    double adicionalExtras = valorHoraExtra * horasExtras;
+    decimal salarioBase = salarioHora * horasTrabalhadas;
+    decimal valorHoraExtra =  salarioHora * 1.4m;
+    decimal adicionalExtras = valorHoraExtra * horasExtras;
     return salarioBase + adicionalExtras;
 }
 
@@ -25,13 +25,13 @@ while (true)
     string inputHorasExtras = Console.ReadLine()!;
 
     bool entradasValidas =
-        double.TryParse(inputSalarioHora, out salarioHora) &&
+        decimal.TryParse(inputSalarioHora, out salarioHora) &&
         int.TryParse(inputHorasTrabalhadas, out horasTrabalhadas) &&
         int.TryParse(inputHorasExtras, out horasExtras);
 
     if (entradasValidas && salarioHora > 0 && horasTrabalhadas >= 0 && horasExtras >= 0)
     {
-        double salarioTotal = CalculaSalario(salarioHora, horasTrabalhadas, horasExtras);
+        decimal salarioTotal = CalculaSalario(salarioHora, horasTrabalhadas, horasExtras);
         Console.WriteLine($"\nSalário final: {salarioTotal:C2}\n");
         break;
     }
@@ -39,5 +39,4 @@ while (true)
     {
         Console.WriteLine("\nAlgum dos valores está inválido. Tente novamente.\n");
     }
-
 }
